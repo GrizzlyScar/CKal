@@ -12,11 +12,11 @@ milage_bike = 0
 num_flight = 0
 
 
-def car(a,b):
-    if a =='petrol':
+def car(a, b):
+    if a == 'petrol':
         co2_car = (174.31*b)/1000
         return int(co2_car)
-    elif a =='diesel':
+    elif a == 'diesel':
         co2_car = (168.4*b)/1000
         return int(co2_car)
     elif a == 'cng':
@@ -26,13 +26,14 @@ def car(a,b):
         co2_car = 0
         return int(co2_car)
 
-def bike(c,d):
 
-    if c =='large':
+def bike(c, d):
+
+    if c == 'large':
         co2_bike = (132.45*milage_bike)/1000
         return int(co2_bike)
 
-    elif bike_size == 'medium' :
+    elif bike_size == 'medium':
         co2_bike = (100.9*milage_bike)/1000
         return int(co2_bike)
     elif bike_size == 'small':
@@ -47,42 +48,57 @@ def house(e):
     electric_co2 = (930*electric_usage)/1000
     return electric_co2
 
-def plane(f,g):
 
-
+def plane(f, g):
     fligh_co2 = 0
-    i=1
-    while i<f:
-     i = i+1
-     temp = int(input("enter the distance of each flight-"))
-     if temp < 300:
-        fligh_co2 = fligh_co2 + (temp*0.25)
-     elif temp>= 300 and temp < 2299:
-        fligh_co2 = fligh_co2 +(temp*0.14)
-     elif temp >= 2299:
-        fligh_co2 = fligh_co2 + (temp*0.17)
+    i = 1
+    while i < f:
+        i = i+1
+        temp = int(input("enter the distance of each flight-"))
+        if temp < 300:
+            fligh_co2 = fligh_co2 + (temp*0.25)
+        elif temp >= 300 and temp < 2299:
+            fligh_co2 = fligh_co2 + (temp*0.14)
+        elif temp >= 2299:
+            fligh_co2 = fligh_co2 + (temp*0.17)
+    return fligh_co2
+
 
 def leaderboard():
-    file = open("leaderboard.txt","w")
+    file = open("leaderboard.txt", "w")
 
 
+def foodConsumption(diet):
+    if diet == 'meat lover':
+        return 3300
+    elif diet == 'average':
+        return 2500
+    elif diet == 'no beef':
+        return 1900
+    elif diet == 'vegetarian':
+        return 1700
+    elif diet == 'vegan':
+        return 1500
 
 
 vehicle_type = input("do u own a car,bike or both -")
-vehicle_type=vehicle_type.lower()
-if vehicle_type =='car':
-     car_fuel = input("enter the fuel used by the car-")
-     car_fuel ==car_fuel.lower()
-     milage_car = int(input("enter distance traveled by car in km-"))
+vehicle_type = vehicle_type.lower()
+if vehicle_type == 'car':
+    car_fuel = input("enter the fuel used by the car-")
+    car_fuel == car_fuel.lower()
+    milage_car = int(input("enter distance traveled by car in km-"))
 
-elif vehicle_type =='bike':
-     bike_size = input("if the bike is greater tha 500cc pls enter 'large', if it is between 125cc and 500 cc pls enter 'medium', if less than or equal to 125 pls enter 'small'- ")
-     milage_bike = int(input("enter the distance done by the bike in km-"))
-elif vehicle_type =='both':
+elif vehicle_type == 'bike':
+    bike_size = input(
+        "if the bike is greater tha 500cc pls enter 'large', if it is between 125cc and 500 cc pls enter 'medium', if less than or equal to 125 pls enter 'small'- ")
+    milage_bike = int(input("enter the distance done by the bike in km-"))
+elif vehicle_type == 'both':
     car_fuel = input("enter the fuel used by the car-")
     car_fuel == car_fuel.lower()
     milage_car = int(input("enter distance travled by car in km-"))
-    bike_size = input("if the bike is greater than 500cc eneer 'large', if it is between 125cc and 500cc enter'medium',if less than or equal to 125cc enter 'small'")
+    print("Enter the category that you bike falls under: ")
+    print("If the bike is greater than 500cc, enter 'large', if it is between 125cc and 500cc enter'medium',if less than or equal to 125cc enter 'small'")
+    bike_size = input()
     bike_size = bike_size.lower()
     milage_bike = int(input("enter the distance done by the bike in km-"))
 
@@ -91,61 +107,34 @@ flight = flight.lower()
 if flight == "yes":
     num_flight = int(input("how many flights do u take in a year "))
     temp = int(input("enter the distance of each flight-"))
-    plane(num_flight,temp)
+    flight_co2 = plane(num_flight, temp)
 
 electric_usage = int(input("enter last months electric usage in KWh-"))
-diet = input('''meat consumption
-1.meat lover
-2.average
-3.no beef
-4.vegetarian
-5.vegan- ''')
+print("Enter your type of diet: ")
+print("Meat Lover")
+print("Average")
+print("No beef")
+print("Vegetarian")
+print("Vegan")
+diet = input("Diet type: ")
 diet = diet.lower()
 
 
-
-print("co2 emission produced by car in kg = ", car(car_fuel,milage_car))
-print("co2 emmision produced by bike in kg = ", bike(bike_size,milage_bike))
+print("co2 emission produced by car in kg = ", car(car_fuel, milage_car))
+print("co2 emmision produced by bike in kg = ", bike(bike_size, milage_bike))
 print("co2 emmisons by electric usage in kg = ", house(electric_usage))
-total_co2 = car(car_fuel,milage_car)+bike(bike_size,milage_bike)+house(electric_usage)+fligh_co2
-if diet == 'meat lover':
-    print("diatary footprint per year is 3.3 metric tons (only for production)")
-    total_co2 = total_co2 + 3.3
-elif diet == 'average':
-    print("diatary footprint per year is 2.5 metric tons (only for production)")
-    total_co2 = total_co2 + 3.3
-elif diet == 'no beef':
-    print("diatary foorprint per year is 1.9 metric tons (only for production)")
-    total_co2 = total_co2 + 2.9
-elif diet =='vegetarian':
-    print("diatary footprint per year is 1.7 tons per year(only for production)" )
-    total_co2 = total_co2 + 1.7
-elif diet == 'vegan':
-    print("diatary footprint per year is 1.5 tons per year(only for production)")
-    total_co2 = total_co2+ 1.5
-print("yout total co2 emmision is ",total_co2,"kg")
+print("co2 emission produced by flights in kg = ", flight_co2)
+total_co2 = car(car_fuel, milage_car)+bike(bike_size,
+                                           milage_bike)+house(electric_usage)+fligh_co2 + foodConsumption(diet)
 
+print("yout total co2 emmision is ", total_co2, "kg")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+diff_in_consumption = 0
+avg_consumption = 2470
+diff_in_consumption = abs(total_co2 - avg_consumption)
+if (avg_consumption > total_co2):
+    print("Your carbon emission is less than the average carbon emission per capita by ",
+          diff_in_consumption, " kgs of carbon dioxide")
+else:
+    print("Your carbon emission is more than the average carbon emission per captia by ",
+          diff_in_consumption, " kgs of carbon dioxide")
