@@ -1,0 +1,10 @@
+pankaj          0.39
+kishore         0.74
+manish          0.96
+sanjay          1.1
+prakash         1.4
+ishaan          1.42
+harshavardhana  1.47
+dhruv           1.5
+nishant         1.83
+aryan           1.9

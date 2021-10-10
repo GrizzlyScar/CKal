@@ -65,7 +65,14 @@ def plane(f, g):
 
 
 def leaderboard():
-    file = open("leaderboard.txt", "w")
+    file = open("leaderboard.txt", "r")
+    print("\n")
+    print("⬇ Check out the leaderboard ⬇")
+    leaderboard = [line.replace('\n', '') for line in file.readlines()]
+    for i in leaderboard:
+        print(i)
+    file.close()
+
 
 
 def foodConsumption(diet):
@@ -80,7 +87,7 @@ def foodConsumption(diet):
     elif diet == 'vegan':
         return 1500
 
-
+name = input("What is your name-")
 vehicle_type = input("do u own a car,bike or both -")
 vehicle_type = vehicle_type.lower()
 if vehicle_type == 'car':
@@ -123,7 +130,7 @@ diet = diet.lower()
 print("co2 emission produced by car in kg = ", car(car_fuel, milage_car))
 print("co2 emmision produced by bike in kg = ", bike(bike_size, milage_bike))
 print("co2 emmisons by electric usage in kg = ", house(electric_usage))
-print("co2 emission produced by flights in kg = ", flight_co2)
+print("co2 emission produced by flights in kg = ", fligh_co2)
 total_co2 = car(car_fuel, milage_car)+bike(bike_size,
                                            milage_bike)+house(electric_usage)+fligh_co2 + foodConsumption(diet)
 
@@ -138,3 +145,20 @@ if (avg_consumption > total_co2):
 else:
     print("Your carbon emission is more than the average carbon emission per captia by ",
           diff_in_consumption, " kgs of carbon dioxide")
+
+leaderboard_choice = input("do u wish to view the leaderboard of the lowest carbon emmisions - ")
+leaderboard_choice = leaderboard_choice.lower()
+if leaderboard_choice == 'yes':
+    leaderboard()
+else:
+    print("thank you for useing the calculator")
+
+
+
+
+
+
+
+
+
+
